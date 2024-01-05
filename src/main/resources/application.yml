@@ -1,0 +1,9 @@
+spring:
+  datasource:
+    driver-class-name: "org.postgresql.Driver"
+    url: "jdbc:postgresql://127.0.1.1:5433/yugabyte?user=yugabyte&password=yugabyte "
+    username: "yugabyte"
+    password: "yugabyte"
+  jpa:
+    hibernate:
+      ddl-auto: "create-drop"
