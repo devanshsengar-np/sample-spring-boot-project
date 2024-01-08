@@ -15,7 +15,6 @@ import java.util.Set;
 @NoArgsConstructor
 @Builder
 @Entity
-@ToString(exclude = {"comments", "likedByUsers", "postUser"})
 @Table(name = "Posts")
 public class Post {
 
@@ -25,15 +24,16 @@ public class Post {
 
     private LocalDateTime createdOn;
 
-    @OneToMany(mappedBy = "post", cascade = CascadeType.ALL)
-    private List<Comment> comments;
-
-    @ManyToMany
-    @JoinTable(
-            name = "post_like",
-            joinColumns = @JoinColumn(name = "post_id"),
-            inverseJoinColumns = @JoinColumn(name = "user_id"))
-    private Set<User> likedByUsers ;
+//    @OneToMany(mappedBy = "post", cascade = CascadeType.ALL)
+//    private List<Comment> comments;
+//
+//    @ManyToMany
+//    @JoinTable(
+//            name = "post_like",
+//            joinColumns = @JoinColumn(name = "post_id"),
+//            inverseJoinColumns = @JoinColumn(name = "user_id"))
+//    private Set<User> likedByUsers ;
+    private List<Long>  comments;
 
     private int likeCount;
 
@@ -41,7 +41,8 @@ public class Post {
 
     private String image;
 
-    @ManyToOne
-    @JoinColumn(name = "user_id")
-    private User postUser;
+//    @ManyToOne
+//    @JoinColumn(name = "user_id")
+//    private User postUser;
+    private String postUser;
 }

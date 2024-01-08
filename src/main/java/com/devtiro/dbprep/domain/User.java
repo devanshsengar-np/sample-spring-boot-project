@@ -16,7 +16,6 @@ import java.util.Set;
 @Builder
 @Entity
 @Table(name = "Users")
-@ToString(exclude = {"posts", "likedPosts"})
 public class User {
 
     @Id
@@ -24,11 +23,12 @@ public class User {
     private String name;
     private String bio;
 
-    @OneToMany(mappedBy = "postUser", cascade = CascadeType.ALL)
-    private List<Post> posts ;
-
-    @ManyToMany(mappedBy = "likedByUsers")
-    private Set<Post> likedPosts ;
+//    @OneToMany(mappedBy = "postUser", cascade = CascadeType.ALL)
+//    private List<Post> posts ;
+//
+//    @ManyToMany(mappedBy = "likedByUsers")
+//    private Set<Post> likedPosts ;
+    private List<Long> posts;
 
     private String profilePicture;
 

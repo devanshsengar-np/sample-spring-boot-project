@@ -25,4 +25,10 @@ public class UserServiceImpl implements UserService {
         System.out.println("all users query executed");
         return userRepository.findAll(pageable);
     }
+
+    @Override
+    public User saveUser(User user) {
+        userRepository.save(user);
+        return user;
+    }
 }
