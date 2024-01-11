@@ -11,4 +11,7 @@ import java.util.Optional;
 public interface PostService {
     Page<Post> getPosts(Pageable pageable);
 
+    Post savePost(Post post);
+
+    Optional<Post> getPost(Long id);
 }

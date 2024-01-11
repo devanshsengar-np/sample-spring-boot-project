@@ -6,4 +6,6 @@ import java.util.Optional;
 
 public interface CommentService {
     Optional<Comment> getComment(Long id);
+
+    Comment saveComment(Comment comment);
 }

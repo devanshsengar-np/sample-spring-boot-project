@@ -1,5 +1,7 @@
 package com.devtiro.dbprep.domain;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -9,14 +11,14 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-@Getter
-@Setter
+@Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
 @Entity
 @ToString(exclude = {"comments", "likedByUsers", "postUser"})
 @Table(name = "Posts")
+
 public class Post {
 
     @Id
@@ -26,6 +28,7 @@ public class Post {
     private LocalDateTime createdOn;
 
     @OneToMany(mappedBy = "post", cascade = CascadeType.ALL)
+    @JsonManagedReference(value = "post-comment")
     private List<Comment> comments;
 
     @ManyToMany
@@ -43,5 +46,15 @@ public class Post {
 
     @ManyToOne
     @JoinColumn(name = "user_id")
+    @JsonBackReference(value = "user-post")
     private User postUser;
+
+    @PrePersist
+    public void prePersist() {
+        // Set the createdOn attribute to the current date and time before persisting
+        this.createdOn = LocalDateTime.now();
+    }
+    public Post(Long id) {
+        this.id = id;
+    }
 }

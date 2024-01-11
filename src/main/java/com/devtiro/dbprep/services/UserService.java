@@ -11,4 +11,6 @@ public interface UserService {
     Optional<User> getUser(String username);
 
     Page<User> getUsers(Pageable pageable);
+
+    User saveUser(User user);
 }

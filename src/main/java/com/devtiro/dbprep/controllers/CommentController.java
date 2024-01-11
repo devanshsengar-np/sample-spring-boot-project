@@ -2,15 +2,14 @@ package com.devtiro.dbprep.controllers;
 
 import com.devtiro.dbprep.domain.Comment;
 import com.devtiro.dbprep.domain.Post;
+import com.devtiro.dbprep.domain.User;
 import com.devtiro.dbprep.services.CommentService;
 import com.devtiro.dbprep.services.PostService;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 public class CommentController {
@@ -24,6 +23,13 @@ public class CommentController {
 //    public ResponseEntity<Page<Post>> listPosts(final Pageable pageable) {
 //        return new ResponseEntity<Page<Post>>(PostService.getPosts(pageable), HttpStatus.OK);
 //    }
+
+
+    @PostMapping(path = "/newComment")
+    public ResponseEntity<Comment> createComment(@RequestBody Comment comment) {
+        Comment savedComment = commentService.saveComment(comment);
+        return ResponseEntity.status(HttpStatus.CREATED).body(savedComment);
+    }
 
     @GetMapping(path = "/comments/{id}")
     public ResponseEntity<Comment> listComments(@PathVariable("id") final Long id) {

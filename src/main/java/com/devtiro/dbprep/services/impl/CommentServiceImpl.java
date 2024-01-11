@@ -20,4 +20,11 @@ public class CommentServiceImpl implements CommentService {
     public Optional<Comment> getComment(Long id) {
         return commentRepository.findById(id);
     }
+
+    @Override
+    public Comment saveComment(Comment comment) {
+        System.out.println("new comment query executed");
+        commentRepository.save(comment);
+        return comment;
+    }
 }
