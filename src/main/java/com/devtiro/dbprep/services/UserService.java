@@ -8,7 +8,7 @@ import org.springframework.data.domain.Pageable;
 import java.util.Optional;
 
 public interface UserService {
-    Optional<User> getUser(String username);
+    Optional<User> getUser(Long username);
 
     Page<User> getUsers(Pageable pageable);
 

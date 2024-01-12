@@ -29,7 +29,7 @@ public class UserController {
     }
 
     @GetMapping(path = "/users/{username}")
-    public ResponseEntity<User> listUsers(@PathVariable("username") final String username) {
+    public ResponseEntity<User> listUsers(@PathVariable("username") final Long username) {
         return userService.getUser(username)
                 .map(user -> new ResponseEntity<>(user, HttpStatus.OK))
                 .orElse(new ResponseEntity<>(HttpStatus.NOT_FOUND));

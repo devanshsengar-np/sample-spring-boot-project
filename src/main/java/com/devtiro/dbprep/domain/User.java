@@ -4,8 +4,10 @@ import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
+import jakarta.transaction.Transactional;
 import lombok.*;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -16,13 +18,15 @@ import java.util.Set;
 @NoArgsConstructor
 @Builder
 @Entity
-@Table(name = "Users")
+@Table(name = "Users" )
 @ToString(exclude = {"posts", "likedPosts"})
 
 public class User {
 
     @Id
-    private String username;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long username;
+
     private String name;
     private String bio;
 
@@ -40,7 +44,7 @@ public class User {
 
 
     //constructor for deserialization
-    public User(String username) {
+    public User(Long username) {
         this.username = username;
     }
 }

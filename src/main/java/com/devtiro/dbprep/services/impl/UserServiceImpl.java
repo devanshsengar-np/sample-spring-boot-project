@@ -15,7 +15,7 @@ public class UserServiceImpl implements UserService {
 
     public UserServiceImpl(final UserRepository userRepository){this.userRepository=userRepository;}
     @Override
-    public Optional<User> getUser(String username) {
+    public Optional<User> getUser(Long username) {
         System.out.println("specific user query executed");
         return userRepository.findById(username);
     }
